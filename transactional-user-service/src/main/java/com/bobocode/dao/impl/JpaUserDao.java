@@ -11,12 +11,13 @@ import java.util.List;
 
 /**
  * This class implements {@link UserDao} using JPA.
- * <p>
- * todo: 1. Configure {@link JpaUserDao} bean as Spring Repository with name "userDao"
- * todo: 2. Enable transaction management on class level
- * todo: 3. Inject {@link EntityManager} using @{@link PersistenceContext} annotation
  */
+
+@Repository("userDao")
+@Transactional // wraps object with transaction proxy using Spring AOP. Is applied to all public methods of a class
 public class JpaUserDao implements UserDao {
+
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Override
